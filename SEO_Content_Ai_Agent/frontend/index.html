@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SEO Content Writer Agent</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { background: #f8f9fa; }
+    #output { white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+<div class="container py-5">
+  <h1 class="text-center mb-4">✍️ SEO Content Writer Agent</h1>
+  <div class="card p-4 shadow-sm">
+    <div class="mb-3">
+      <label class="form-label">Topic</label>
+      <input type="text" id="topic" class="form-control" placeholder="e.g., AI in Healthcare">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Primary Keyword (main targeting keyword)</label>
+      <input type="text" id="primaryKeyword" class="form-control" placeholder="e.g., AI in healthcare">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Other Keywords (comma-separated)</label>
+      <input type="text" id="keywords" class="form-control" placeholder="e.g., automation, medical AI">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Tone</label>
+      <select id="tone" class="form-select">
+        <option>Professional</option>
+        <option>Casual</option>
+        <option>Creative</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Length</label>
+      <select id="length" class="form-select">
+        <option>300-word catchy content</option>
+        <option>500-word SEO content</option>
+        <option>Blog & Article (1200–1500 words)</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Mode</label>
+      <select id="mode" class="form-select">
+        <option>Blog & Article</option>
+        <option>Product Description</option>
+        <option>300-word catchy content</option>
+        <option>500-word SEO content</option>
+      </select>
+    </div>
+    <button class="btn btn-primary w-100" onclick="generateContent()">🚀 Generate Content</button>
+  </div>
+
+  <div class="card mt-4 p-4">
+    <h5>Generated Content</h5>
+    <div id="output" class="mb-3 text-break text-dark"></div>
+    <button class="btn btn-outline-secondary btn-sm d-none" id="copyButton" onclick="copyContent()">📋 Copy to Clipboard</button>
+  </div>
+</div>
+
+<script>
+function generateContent() {
+  const topic = document.getElementById('topic').value.trim();
+  const primaryKeyword = document.getElementById('primaryKeyword').value.trim();
+  const keywords = document.getElementById('keywords').value.trim();
+  const tone = document.getElementById('tone').value;
+  const length = document.getElementById('length').value;
+  const mode = document.getElementById('mode').value;
+
+  if (!topic) {
+    alert("Please enter a topic.");
+    return;
+  }
+
+  document.getElementById('output').innerHTML = "⏳ Generating...";
+  document.getElementById('copyButton').classList.add('d-none');
+
+  fetch('http://127.0.0.1:5000/generate', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      topic,
+      primary_keyword: primaryKeyword,
+      keywords,
+      tone,
+      length,
+      mode
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if (data.content) {
+      document.getElementById('output').innerHTML = data.content;
+      document.getElementById('copyButton').classList.remove('d-none');
+    } else {
+      document.getElementById('output').innerHTML = `<div class="text-danger">❌ ${data.error}</div>`;
+    }
+  })
+  .catch(err => {
+    document.getElementById('output').innerHTML = `<div class="text-danger">❌ Error: ${err.message}</div>`;
+  });
+}
+
+function copyContent() {
+  const text = document.getElementById('output').innerText;
+  navigator.clipboard.writeText(text)
+    .then(() => alert("✅ Copied to clipboard!"))
+    .catch(() => alert("❌ Failed to copy!"));
+}
+</script>
+</body>
+</html>
