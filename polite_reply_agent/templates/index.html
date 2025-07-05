@@ -1,0 +1,108 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Polite Reply Agent</title>
+    <link rel="stylesheet" href="/static/urdu-font.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .urdu {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            direction: rtl;
+            text-align: right;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+            font-size: 14px;
+        }
+        button {
+            margin: 6px 0;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 25px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            white-space: pre-line;
+            border-radius: 5px;
+        }
+        h2, h3 {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h2>📝 Polite Reply Agent</h2>
+
+    <form id="replyForm">
+        <label><strong>User Message:</strong></label>
+        <textarea name="message" rows="4" required></textarea>
+
+        <label><strong>Your Reply (optional):</strong></label>
+        <textarea name="reply" rows="3"></textarea>
+
+        <label><strong>Key Points (optional):</strong></label>
+        <textarea name="keypoints" rows="3"></textarea>
+
+        <h3>Your Reply Options</h3>
+        <div>
+            <button type="button" onclick="submitForm('correction')">🛠 Text Correction</button><br>
+            <button type="button" onclick="submitForm('simple_en')">🇬🇧 Simple English</button><br>
+            <button type="button" onclick="submitForm('simple_ur')">🇵🇰 Simple Urdu</button><br>
+            <button type="button" onclick="submitForm('emoji_en')">😊 English with Emojis (Friendly & Funny)</button><br>
+            <button type="button" onclick="submitForm('emoji_ur')">🌷 Urdu with Emojis (باادب اور محبت)</button><br>
+            <button type="button" onclick="submitForm('elder_reply')">👴 Reply for Elders (Respected & Serious)</button>
+        </div>
+    </form>
+
+    <div class="output" id="responseBox" style="display:none;">
+        <h3 id="resultTitle">✅ Output:</h3>
+        <p id="resultContent"></p>
+    </div>
+
+    <script>
+        function submitForm(actionType) {
+            const form = document.getElementById('replyForm');
+            const formData = new FormData(form);
+            formData.append('action', actionType);
+
+            fetch("/process", {
+                method: "POST",
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("responseBox").style.display = "block";
+                document.getElementById("resultTitle").innerText = data.title;
+                document.getElementById("resultContent").innerText = data.content;
+
+                if (actionType.includes("ur")) {
+                    document.getElementById("resultContent").classList.add("urdu");
+                } else {
+                    document.getElementById("resultContent").classList.remove("urdu");
+                }
+            });
+        }
+    </script>
+</body>
+</html>
