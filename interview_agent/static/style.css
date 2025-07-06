@@ -1,0 +1,25 @@
+body {
+  background: linear-gradient(to right, #f0f2f5, #e0e6ed);
+  font-family: 'Roboto', sans-serif;
+}
+h1 {
+  font-weight: 700;
+}
+.glass-effect {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  backdrop-filter: blur(8px);
+}
+.question-box {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+}
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
