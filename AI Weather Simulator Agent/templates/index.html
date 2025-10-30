@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Weather Manipulation Simulator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-cloud-sun"></i> AI Weather Simulator Agent
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-sliders-h"></i> Simulation Controls</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="simulationForm">
+                            <div class="mb-3">
+                                <label for="city" class="form-label">Location</label>
+                                <input type="text" class="form-control" id="city" value="London" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="manipulationType" class="form-label">Weather Manipulation</label>
+                                <select class="form-select" id="manipulationType" required>
+                                    <option value="rainfall">Rainfall</option>
+                                    <option value="temperature">Temperature</option>
+                                    <option value="humidity">Humidity</option>
+                                    <option value="clouds">Cloud Coverage</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="intensity" class="form-label">Intensity (-1 to 1)</label>
+                                <input type="range" class="form-range" id="intensity" min="-1" max="1" step="0.1" value="0.5">
+                                <div class="d-flex justify-content-between">
+                                    <small class="text-muted">Decrease</small>
+                                    <span id="intensityValue" class="fw-bold">0.5</span>
+                                    <small class="text-muted">Increase</small>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="duration" class="form-label">Duration (days)</label>
+                                <input type="number" class="form-control" id="duration" min="1" max="30" value="7">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100" id="simulateBtn">
+                                <i class="fas fa-play"></i> Run Simulation
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card mt-3" id="currentWeatherCard" style="display: none;">
+                    <div class="card-header">
+                        <h6><i class="fas fa-sun"></i> Current Weather</h6>
+                    </div>
+                    <div class="card-body" id="currentWeatherContent">
+                        <!-- Current weather data will be inserted here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-chart-line"></i> Simulation Results</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="loadingSpinner" class="text-center" style="display: none;">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2">Running simulation...</p>
+                        </div>
+
+                        <div id="resultsContainer" style="display: none;">
+                            <div id="chartsContainer" class="mb-4">
+                                <!-- Charts will be inserted here -->
+                            </div>
+
+                            <div id="heatmapContainer" class="mb-4">
+                                <!-- Heatmap will be inserted here -->
+                            </div>
+
+                            <div id="aiSummaryContainer" class="mb-4">
+                                <h6><i class="fas fa-brain"></i> AI Impact Analysis</h6>
+                                <div id="aiSummary" class="alert alert-info">
+                                    <!-- AI summary will be inserted here -->
+                                </div>
+                            </div>
+
+                            <div id="reportContainer">
+                                <!-- Weather report will be inserted here -->
+                            </div>
+                        </div>
+
+                        <div id="errorContainer" class="alert alert-danger" style="display: none;">
+                            <!-- Error messages will be shown here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
