@@ -11,33 +11,85 @@ An AI-powered simulator that predicts and visualizes the potential effects of ar
 - **Responsive Web Interface**: Bootstrap 5 based UI with modern design
 - **Multiple Scenarios**: Test various climate scenarios (Dubai heat reduction, London rainfall increase, etc.)
 
-## Installation
 
-1. **Clone the repository**:
-   ```bash
-   git clone <repository-url>
-   cd ai-weather-simulator-agent
-   ```
+# Installation
+# Must read to get your agent running
+### 1. Create and activate a Python virtual environment (venv)
 
-2. **Create virtual environment**:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
+- macOS / Linux:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
 
-3. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+- Windows (PowerShell):
+```powershell
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+```
 
-4. **Set up environment variables**:
-   Create a `.env` file in the root directory:
-   ```env
-   OPENWEATHER_API_KEY=your_openweather_api_key
-   METEOSTAT_API_KEY=your_meteostat_api_key  # Optional
-   OPENAI_API_KEY=your_openai_api_key
-   SECRET_KEY=your_secret_key_here
-   ```
+- Windows (Command Prompt):
+```cmd
+python -m venv venv
+venv\Scripts\activate
+```
+
+### 2. Upgrade pip and essential packaging tools
+```bash
+python -m pip install --upgrade pip setuptools wheel
+```
+
+### 3. Install dependencies
+- If you already have a requirements.txt:
+```bash
+pip install -r requirements.txt
+```
+- If you do not have a requirements.txt, create one with the example packages below, then install:
+```text
+# Example requirements.txt
+Flask>=2.0
+requests>=2.25
+python-dotenv>=0.19
+openai>=0.27
+pandas>=1.3
+numpy>=1.21
+plotly>=5.0
+matplotlib>=3.4
+meteostat>=1.6      # optional, only if you use Meteostat
+gunicorn>=20.0      # optional, for production deployment
+```
+
+Save that as `requirements.txt` and run:
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Verify installation
+Quick checks:
+```bash
+pip list
+# or
+python -c "import flask,requests,openai,pandas; print('OK')"
+```
+
+### 5. Environment variables
+Create a `.env` file in the project root with keys:
+```env
+OPENWEATHER_API_KEY=your_openweather_api_key
+METEOSTAT_API_KEY=your_meteostat_api_key  # Optional
+OPENAI_API_KEY=your_openai_api_key
+SECRET_KEY=your_secret_key_here
+```
+
+### 6. Run and stop
+- Run the app:
+```bash
+python app.py
+```
+- Stop and deactivate the venv:
+```bash
+deactivate
+```
 
 ## API Keys Setup
 
