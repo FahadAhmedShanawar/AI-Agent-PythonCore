@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Personal Finance Manager</h1>
+
+        <div class="section">
+            <h2>Add Expense</h2>
+            <form id="expense-form">
+                <input type="date" id="date" required>
+                <input type="number" id="amount" step="0.01" placeholder="Amount" required>
+                <input type="text" id="description" placeholder="Description" required>
+                <select id="method">
+                    <option value="cash">Cash</option>
+                    <option value="card">Card</option>
+                </select>
+                <button type="submit">Add Expense</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h2>Set Budget</h2>
+            <form id="budget-form">
+                <input type="month" id="budget-month" required>
+                <input type="number" id="savings-goal" step="0.01" placeholder="Savings Goal" required>
+                <div id="category-limits">
+                    <!-- Dynamic category inputs -->
+                </div>
+                <button type="submit">Set Budget</button>
+            </form>
+        </div>
+
+        <div class="section">
+            <h2>Dashboard</h2>
+            <button id="load-dashboard">Load Dashboard</button>
+            <div id="dashboard-content">
+                <div id="charts"></div>
+                <div id="summary"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Saving Tips</h2>
+            <button id="get-tips">Get Tips</button>
+            <div id="tips-content"></div>
+        </div>
+    </div>
+
+    <script>
+        // Add Expense
+        document.getElementById('expense-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = {
+                date: document.getElementById('date').value,
+                amount: parseFloat(document.getElementById('amount').value),
+                description: document.getElementById('description').value,
+                method: document.getElementById('method').value
+            };
+            const response = await fetch('/api/expense', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+            alert(result.message || result.error);
+        });
+
+        // Load Dashboard
+        document.getElementById('load-dashboard').addEventListener('click', async () => {
+            const response = await fetch('/api/dashboard');
+            const data = await response.json();
+            displayDashboard(data);
+        });
+
+        // Get Tips
+        document.getElementById('get-tips').addEventListener('click', async () => {
+            const response = await fetch('/api/tips', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({})
+            });
+            const data = await response.json();
+            displayTips(data.tips);
+        });
+
+        function displayDashboard(data) {
+            const content = document.getElementById('dashboard-content');
+            content.innerHTML = `
+                <h3>Total Spent: $${data.aggregates.total.toFixed(2)}</h3>
+                <div id="charts">
+                    <img src="${data.charts.pie_chart}" alt="Pie Chart">
+                    <img src="${data.charts.bar_chart}" alt="Bar Chart">
+                </div>
+            `;
+        }
+
+        function displayTips(tips) {
+            const content = document.getElementById('tips-content');
+            content.innerHTML = tips.map(tip => `
+                <div class="tip">
+                    <p>${tip.tip}</p>
+                    <p>Estimated Savings: $${tip.estimated_savings.toFixed(2)}</p>
+                    <p>Confidence: ${tip.confidence}</p>
+                    <p>Math: ${tip.math}</p>
+                </div>
+            `).join('');
+        }
+
+        // Initialize category limits
+        const categories = ['food', 'transport', 'entertainment', 'utilities', 'healthcare', 'shopping'];
+        const limitsDiv = document.getElementById('category-limits');
+        categories.forEach(cat => {
+            limitsDiv.innerHTML += `<input type="number" id="limit-${cat}" step="0.01" placeholder="${cat} limit">`;
+        });
+
+        document.getElementById('budget-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const limits = {};
+            categories.forEach(cat => {
+                const val = parseFloat(document.getElementById(`limit-${cat}`).value) || 0;
+                limits[cat] = val;
+            });
+            const data = {
+                month: document.getElementById('budget-month').value,
+                category_limits: limits,
+                savings_goal: parseFloat(document.getElementById('savings-goal').value)
+            };
+            const response = await fetch('/api/budget', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+            alert(result.message || result.error);
+        });
+    </script>
+</body>
+</html>
