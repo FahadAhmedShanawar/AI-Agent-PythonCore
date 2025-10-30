@@ -21,14 +21,66 @@ An AI-powered travel planning application that helps users create personalized i
 4. Install dependencies: `pip install -r requirements.txt`
 5. Copy `.env.example` to `.env` and add your API keys
 6. Run the app: `python app.py`
-7. 
+ 
+
 
 
 --------------------------------------------------------------
 ## Don't forget
 - This is necessary to create a virtual environment.
 - Make sure to install the packages to run the relevant agent.
+
+(venv) folder typically contains:
+# Virtual Environment Setup Guide
+
+## Prerequisites
+- Python 3.x installed on your system
+- pip package manager
+
+## Setting Up Virtual Environment
+
+### 1. Create Virtual Environment
+```bash
+# Windows
+python -m venv venv
+
+# Unix/Linux/MacOS
+python3 -m venv venv
+```
+
+### 2. Activate Virtual Environment
+```bash
+# Windows (Command Prompt)
+venv\Scripts\activate.bat
+
+# Windows (PowerShell)
+venv\Scripts\Activate.ps1
+
+# Unix/Linux/MacOS
+source venv/bin/activate
+```
+
+### 3. Verify Activation
+- Your prompt should now show `(venv)` at the beginning
+- Verify Python location:
+```bash
+which python  # Unix/Linux/MacOS
+where python  # Windows
+```
+
+### 4. Install Required Packages
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Deactivating Virtual Environment
+When you're done working:
+```bash
+deactivate
+```
 ---------------------------------------------------------------
+
+
 
 
 
@@ -59,4 +111,5 @@ An AI-powered travel planning application that helps users create personalized i
 ## Contributing
 
 Please read the usage guide in `docs/usage_guide.md` for detailed setup and development instructions.
+
 
