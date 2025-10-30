@@ -21,6 +21,16 @@ An AI-powered travel planning application that helps users create personalized i
 4. Install dependencies: `pip install -r requirements.txt`
 5. Copy `.env.example` to `.env` and add your API keys
 6. Run the app: `python app.py`
+7. 
+
+
+--------------------------------------------------------------
+## Don't forget
+- This is necessary to create a virtual environment.
+- Make sure to install the packages to run the relevant agent.
+---------------------------------------------------------------
+
+
 
 ## API Keys Required
 
@@ -49,3 +59,4 @@ An AI-powered travel planning application that helps users create personalized i
 ## Contributing
 
 Please read the usage guide in `docs/usage_guide.md` for detailed setup and development instructions.
+
