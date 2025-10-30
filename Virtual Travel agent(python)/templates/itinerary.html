@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Travel Itinerary</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Your Personalized Itinerary</h1>
+            <a href="/" class="btn-secondary">Plan Another Trip</a>
+        </header>
+
+        <main id="itinerary-content">
+            <!-- Itinerary content will be populated by JavaScript -->
+        </main>
+
+        <div class="export-section">
+            <h3>Export Your Itinerary</h3>
+            <button onclick="exportPDF()" class="btn-primary">Download PDF</button>
+            <button onclick="exportCSV()" class="btn-secondary">Download CSV</button>
+            <button onclick="shareItinerary()" class="btn-secondary">Share on Social Media</button>
+        </div>
+    </div>
+
+    <script>
+        // Get itinerary data from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const dataParam = urlParams.get('data');
+
+        if (dataParam) {
+            const data = JSON.parse(decodeURIComponent(dataParam));
+            displayItinerary(data);
+        }
+
+        function displayItinerary(data) {
+            const content = document.getElementById('itinerary-content');
+
+            let html = `
+                <div class="itinerary-summary">
+                    <h2>Trip to ${data.destination}</h2>
+                    <p><strong>Duration:</strong> ${data.itinerary.duration}</p>
+                    <p><strong>Travelers:</strong> ${data.itinerary.travelers}</p>
+                    <p><strong>Style:</strong> ${data.itinerary.style}</p>
+                </div>
+
+                <div class="cost-breakdown">
+                    <h3>Cost Breakdown (per person)</h3>
+                    <p><strong>Total Estimated Cost:</strong> $${data.costs.total}</p>
+                    <ul>
+                        <li>Flights: $${data.costs.flights}</li>
+                        <li>Hotels: $${data.costs.hotels}</li>
+                        <li>Activities: $${data.costs.activities}</li>
+                        <li>Miscellaneous: $${data.costs.misc}</li>
+                    </ul>
+                </div>
+
+                <div class="day-by-day">
+                    <h3>Day-by-Day Itinerary</h3>
+            `;
+
+            data.itinerary.days.forEach(day => {
+                html += `
+                    <div class="day">
+                        <h4>Day ${day.day} - ${day.date}</h4>
+                        <ul>
+                `;
+                day.activities.forEach(activity => {
+                    html += `<li><strong>${activity.time}:</strong> ${activity.activity}</li>`;
+                });
+                html += `
+                        </ul>
+                    </div>
+                `;
+            });
+
+            html += `
+                </div>
+
+                <div class="tips">
+                    <h3>Travel Tips</h3>
+                    <ul>
+                        <li>Try local cuisine: [Local dish recommendation]</li>
+                        <li>Hidden gem: [Hidden gem experience]</li>
+                        <li>Safety tip: [Travel safety tip]</li>
+                    </ul>
+                </div>
+            `;
+
+            content.innerHTML = html;
+        }
+
+        function exportPDF() {
+            // Implement PDF export
+            alert('PDF export functionality coming soon!');
+        }
+
+        function exportCSV() {
+            // Implement CSV export
+            alert('CSV export functionality coming soon!');
+        }
+
+        function shareItinerary() {
+            const text = `Just planned my trip with Virtual Travel Agent! 🌍✈️ #AITravel #VirtualTravelAgent`;
+            const url = window.location.href;
+            const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+            window.open(shareUrl, '_blank');
+        }
+    </script>
+</body>
+</html>

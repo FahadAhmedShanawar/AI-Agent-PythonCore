@@ -1,0 +1,23 @@
+2025-10-18 13:13:19,754 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.5:5000
+2025-10-18 13:13:19,754 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-18 13:13:19,757 - INFO -  * Restarting with stat
+2025-10-18 13:13:20,502 - WARNING -  * Debugger is active!
+2025-10-18 13:13:20,509 - INFO -  * Debugger PIN: 342-977-446
+2025-10-18 13:14:09,348 - INFO - 127.0.0.1 - - [18/Oct/2025 13:14:09] "GET / HTTP/1.1" 200 -
+2025-10-18 13:14:19,286 - WARNING - Skyscanner API key not found, returning mock data
+2025-10-18 13:14:19,287 - WARNING - Skyscanner API key not found, returning mock data
+2025-10-18 13:14:19,288 - WARNING - OpenTripMap API key not found, returning mock data
+2025-10-18 13:14:19,299 - INFO - 127.0.0.1 - - [18/Oct/2025 13:14:19] "POST /generate_itinerary HTTP/1.1" 200 -
+2025-10-18 13:14:55,157 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.100.5:5000
+2025-10-18 13:14:55,157 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-18 13:14:55,160 - INFO -  * Restarting with stat
+2025-10-18 13:14:56,113 - WARNING -  * Debugger is active!
+2025-10-18 13:14:56,119 - INFO -  * Debugger PIN: 128-007-136
+2025-10-18 13:16:15,073 - INFO - 127.0.0.1 - - [18/Oct/2025 13:16:15] "GET / HTTP/1.1" 200 -
+2025-10-18 13:16:15,266 - INFO - 127.0.0.1 - - [18/Oct/2025 13:16:15] "GET /static/css/style.css HTTP/1.1" 200 -

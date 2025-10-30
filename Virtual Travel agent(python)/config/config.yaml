@@ -1,0 +1,39 @@
+app:
+  name: "Virtual Travel Agent"
+  version: "1.0.0"
+  debug: true
+
+api:
+  skyscanner:
+    base_url: "https://skyscanner-api.p.rapidapi.com"
+    headers:
+      X-RapidAPI-Key: "${SKYSCANNER_API_KEY}"
+      X-RapidAPI-Host: "skyscanner-api.p.rapidapi.com"
+  opentripmap:
+    base_url: "https://api.opentripmap.com/0.1/en/places"
+    api_key: "${OPENTRIPMAP_API_KEY}"
+  unsplash:
+    base_url: "https://api.unsplash.com"
+    access_key: "${UNSPLASH_ACCESS_KEY}"
+  nominatim:
+    base_url: "https://nominatim.openstreetmap.org"
+
+defaults:
+  currency: "${CURRENCY}"
+  timezone: "${TIMEZONE}"
+  cache_expiry_hours: "${CACHE_EXPIRY_HOURS}"
+  max_travelers: 10
+  min_budget: 100
+  max_budget: 10000
+  itinerary_days: 7
+
+travel_styles:
+  - relaxed
+  - adventure
+  - family
+  - luxury
+
+cost_categories:
+  - economy
+  - balanced
+  - premium
