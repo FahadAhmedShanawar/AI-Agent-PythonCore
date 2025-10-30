@@ -1,0 +1,4 @@
+event_id,id,name,email,status
+1,1,Alice Smith,alice@example.com,attending
+1,2,Bob Johnson,bob@example.com,maybe
+2,3,Charlie Brown,charlie@example.com,attending

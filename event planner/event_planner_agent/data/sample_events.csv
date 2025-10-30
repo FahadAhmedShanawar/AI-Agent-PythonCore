@@ -1,0 +1,4 @@
+id,name,date,time,location,expected_attendees,event_type,budget,special_requirements
+1,Birthday Party,2023-12-25,15:00,Los Angeles,50,birthday,300,Cake, games, decorations
+2,Corporate Conference,2024-02-10,08:00,Chicago,150,conference,2000,Projector, microphones, catering
+3,Outdoor Meetup,2023-11-05,10:00,Seattle,25,meetup,100,Weather contingency plan

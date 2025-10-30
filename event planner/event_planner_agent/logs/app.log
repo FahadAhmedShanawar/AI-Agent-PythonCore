@@ -1,0 +1,31 @@
+2025-10-18 11:41:45,810 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-10-18 11:41:45,810 - INFO - [33mPress CTRL+C to quit[0m
+2025-10-18 11:41:45,810 - INFO -  * Restarting with stat
+2025-10-18 11:41:48,127 - WARNING -  * Debugger is active!
+2025-10-18 11:41:48,135 - INFO -  * Debugger PIN: 128-007-136
+2025-10-18 11:42:18,746 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:18] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-10-18 11:42:18,888 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:18] "GET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1" 200 -
+2025-10-18 11:42:19,007 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:19] "GET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1" 200 -
+2025-10-18 11:42:19,424 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:19] "GET /?__debugger__=yes&cmd=resource&f=console.png&s=Z41S4lmMqSrIy3g3Wb2S HTTP/1.1" 200 -
+2025-10-18 11:42:19,658 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:19] "GET /?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1" 200 -
+2025-10-18 11:42:27,797 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:27] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-10-18 11:42:28,071 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:28] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-10-18 11:42:28,137 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:28] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-10-18 11:42:28,501 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:28] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png&s=Z41S4lmMqSrIy3g3Wb2S HTTP/1.1[0m" 304 -
+2025-10-18 11:42:35,575 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:35] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-10-18 11:42:35,887 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:35] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-10-18 11:42:35,931 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:35] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-10-18 11:42:36,345 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:36] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png&s=Z41S4lmMqSrIy3g3Wb2S HTTP/1.1[0m" 304 -
+2025-10-18 11:42:53,267 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:53] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-10-18 11:42:53,524 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:53] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-10-18 11:42:53,617 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:53] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-10-18 11:42:54,048 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:54] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png&s=Z41S4lmMqSrIy3g3Wb2S HTTP/1.1[0m" 304 -
+2025-10-18 11:42:56,197 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:56] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-10-18 11:42:56,476 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:56] "[36mGET /?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 304 -
+2025-10-18 11:42:56,548 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:56] "[36mGET /?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 304 -
+2025-10-18 11:42:56,968 - INFO - 127.0.0.1 - - [18/Oct/2025 11:42:56] "[36mGET /?__debugger__=yes&cmd=resource&f=console.png&s=Z41S4lmMqSrIy3g3Wb2S HTTP/1.1[0m" 304 -
+2025-10-18 11:55:57,267 - INFO - 127.0.0.1 - - [18/Oct/2025 11:55:57] "GET / HTTP/1.1" 200 -
+2025-10-18 11:55:59,334 - INFO - 127.0.0.1 - - [18/Oct/2025 11:55:59] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-10-18 11:56:02,460 - INFO - 127.0.0.1 - - [18/Oct/2025 11:56:02] "GET /events HTTP/1.1" 200 -
+2025-10-18 11:56:10,130 - INFO - 127.0.0.1 - - [18/Oct/2025 11:56:10] "GET /events HTTP/1.1" 200 -

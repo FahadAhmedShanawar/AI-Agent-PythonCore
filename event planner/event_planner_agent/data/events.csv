@@ -1,0 +1,3 @@
+id,name,date,time,location,expected_attendees,event_type,budget,special_requirements
+1,John's Birthday,2023-12-15,18:00,New York City,30,birthday,500,Cake and balloons
+2,Tech Conference 2024,2024-03-20,09:00,San Francisco,200,conference,5000,AV equipment and catering
