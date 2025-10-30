@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Scheduler</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        form { margin-bottom: 30px; }
+        input, textarea, select { display: block; margin: 10px 0; padding: 8px; width: 300px; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .post { border: 1px solid #ddd; padding: 10px; margin: 10px 0; }
+        .flash { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Social Media Scheduler Agent</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flash">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <h2>Schedule a New Post</h2>
+    <form action="/schedule" method="post" enctype="multipart/form-data">
+        <label for="text">Post Text:</label>
+        <textarea name="text" id="text" required></textarea>
+
+        <label for="platform">Platform:</label>
+        <select name="platform" id="platform" required>
+            <option value="twitter">Twitter</option>
+            <option value="facebook">Facebook</option>
+            <option value="instagram">Instagram</option>
+        </select>
+
+        <label for="hashtags">Hashtags (comma-separated):</label>
+        <input type="text" name="hashtags" id="hashtags" placeholder="e.g., coding, ai">
+
+        <label for="scheduled_time">Scheduled Time:</label>
+        <input type="datetime-local" name="scheduled_time" id="scheduled_time" required>
+
+        <label for="image">Image (optional):</label>
+        <input type="file" name="image" id="image" accept="image/*">
+
+        <button type="submit">Schedule Post</button>
+    </form>
+
+    <h2>Scheduled Posts</h2>
+    {% if posts %}
+        {% for post in posts %}
+            <div class="post">
+                <p><strong>Platform:</strong> {{ post.platform }}</p>
+                <p><strong>Text:</strong> {{ post.text }}</p>
+                {% if post.hashtags %}
+                    <p><strong>Hashtags:</strong> {{ post.hashtags | join(', ') }}</p>
+                {% endif %}
+                <p><strong>Scheduled:</strong> {{ post.scheduled_time }}</p>
+                {% if post.image_path %}
+                    <p><strong>Image:</strong> <img src="/{{ post.image_path }}" alt="Post image" style="max-width: 200px;"></p>
+                {% endif %}
+                <form action="/delete/{{ post.id }}" method="post" style="display: inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No scheduled posts.</p>
+    {% endif %}
+</body>
+</html>
